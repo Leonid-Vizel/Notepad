@@ -120,6 +120,16 @@ namespace TestForm
             e.Graphics.DrawString(textBox.Text, textBox.Font, new SolidBrush(textBox.ForeColor), 10, 10);
         }
 
+        /// <summary>
+        /// Преобразует текущую позицию курсора в строку и столбец
+        /// </summary>
+        private string GetCurrentPosition()
+        {
+            int row = 0;
+            int column = textBox.SelectionStart;
+            return $"Строка {row}, столбец {column}";
+        }
+
         #endregion
 
         #region Файл
@@ -214,7 +224,12 @@ namespace TestForm
                     try
                     {
                         ignoreTextChanges = true;
-                        textBox.Text = File.ReadAllText(openDialog.FileName);
+                        string readString = File.ReadAllText(openDialog.FileName);
+                        if (textBox.MaxLength > readString.Length)
+                        {
+                            textBox.MaxLength = readString.Length;
+                        }
+                        textBox.Text = readString;
                         ignoreTextChanges = false;
                         path = openDialog.FileName;
                         status = true;
@@ -365,6 +380,9 @@ namespace TestForm
 
         #region Вид
 
+        /// <summary>
+        /// Обработка события нажатия Вид->Строка состояния
+        /// </summary>
         private void SetStatuStripVisibility(object sender, EventArgs e)
         {
             statusStripMenuItem.Checked = !statusStripMenuItem.Checked;
@@ -396,7 +414,11 @@ namespace TestForm
                 try
                 {
                     ignoreTextChanges = true;
-                    textBox.Text = File.ReadAllText(path);
+                    string readString = File.ReadAllText(path);
+                    if (textBox.MaxLength > readString.Length)
+                    {
+                        textBox.MaxLength = readString.Length;
+                    }
                     ignoreTextChanges = false;
                 }
                 catch (Exception exception)
@@ -421,6 +443,7 @@ namespace TestForm
                 }
                 status = false;
             }
+            toolStripStatusLabel1.Text = GetCurrentPosition();
         }
     }
 }

@@ -67,7 +67,9 @@ namespace TestForm
             this.repositoryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.textBox = new System.Windows.Forms.TextBox();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -281,14 +283,16 @@ namespace TestForm
             // selectAllMenuItem
             // 
             this.selectAllMenuItem.Name = "selectAllMenuItem";
-            this.selectAllMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.selectAllMenuItem.Size = new System.Drawing.Size(180, 22);
             this.selectAllMenuItem.Text = "Выделить всё";
+            this.selectAllMenuItem.Click += new System.EventHandler(this.SelectAll);
             // 
             // dateTimeMenuItem
             // 
             this.dateTimeMenuItem.Name = "dateTimeMenuItem";
-            this.dateTimeMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.dateTimeMenuItem.Text = "Дата и время";
+            this.dateTimeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dateTimeMenuItem.Text = "Время и дата";
+            this.dateTimeMenuItem.Click += new System.EventHandler(this.PasteCurrentDateTime);
             // 
             // formatMenuItem
             // 
@@ -349,6 +353,8 @@ namespace TestForm
             // 
             // statusStrip
             // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
             this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 22);
@@ -357,13 +363,21 @@ namespace TestForm
             // 
             // textBox
             // 
+            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox.Location = new System.Drawing.Point(0, 24);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
+            this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox.Size = new System.Drawing.Size(800, 404);
             this.textBox.TabIndex = 9;
             this.textBox.TextChanged += new System.EventHandler(this.OnTextChanged);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(115, 17);
+            this.toolStripStatusLabel1.Text = "Строка:1, столбец:1";
             // 
             // MainWindow
             // 
@@ -380,6 +394,8 @@ namespace TestForm
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,6 +440,7 @@ namespace TestForm
         private System.Windows.Forms.ToolStripMenuItem WordWrapMenuItem;
         private System.Windows.Forms.ToolStripMenuItem шрифтToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
