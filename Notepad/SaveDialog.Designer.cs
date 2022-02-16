@@ -55,7 +55,7 @@ namespace TestForm
             this.saveBtn.TabIndex = 1;
             this.saveBtn.Text = "Сохранить";
             this.saveBtn.UseVisualStyleBackColor = true;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.saveBtn.Click += new System.EventHandler(this.saveBtnClick);
             // 
             // notSaveBtn
             // 
@@ -65,7 +65,7 @@ namespace TestForm
             this.notSaveBtn.TabIndex = 2;
             this.notSaveBtn.Text = "Не сохранять";
             this.notSaveBtn.UseVisualStyleBackColor = true;
-            this.notSaveBtn.Click += new System.EventHandler(this.notSaveBtn_Click);
+            this.notSaveBtn.Click += new System.EventHandler(this.notSaveBtnClick);
             // 
             // cancelBtn
             // 
@@ -75,7 +75,7 @@ namespace TestForm
             this.cancelBtn.TabIndex = 3;
             this.cancelBtn.Text = "Отмена";
             this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtnClick);
             // 
             // SaveDialog
             // 
@@ -92,7 +92,7 @@ namespace TestForm
             this.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Блокнот";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SaveDialog_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.ResumeLayout(false);
 
         }

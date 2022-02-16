@@ -19,10 +19,12 @@ namespace TestForm
         /// Игнорировать изменения в текстовом поле
         /// </summary>
         bool ignoreTextChanges;
+
         /// <summary>
         /// Поле для свойства 'path' (Не использовать)
         /// </summary>
         private string _path;
+
         /// <summary>
         /// Путь до открытого документа
         /// </summary> 
@@ -36,15 +38,20 @@ namespace TestForm
                 Text = $"Блокнот - {fileName}";
             }
         }
+
         /// <summary>
         /// Статус: Сохранено/Не сохранено
         /// </summary>
         private bool status;
+
         /// <summary>
         /// Имя открытого документа
         /// </summary>
         private string fileName;
 
+        /// <summary>
+        /// Конструктор без загрузки
+        /// </summary>
         public MainWindow()
         {
             _path = string.Empty;
@@ -53,12 +60,18 @@ namespace TestForm
             Text = $"Блокнот - {fileName}";
         }
 
+        /// <summary>
+        /// Конструктор для открытия файлов извне (через args)
+        /// </summary>
+        /// <param name="path">Путь к файлу для открытия</param>
         public MainWindow(string path)
         {
             status = true;
             InitializeComponent();
             this.path = path;
         }
+
+        #region Вспомогательные методы
 
         /// <summary>
         /// Метод проверки сохранения и запроса пользователю
@@ -98,6 +111,18 @@ namespace TestForm
             }
             return true;
         }
+
+        /// <summary>
+        /// Обработка события отрисовки страницы для печати на принтере
+        /// </summary>
+        private void PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(textBox.Text, textBox.Font, new SolidBrush(textBox.ForeColor), 10, 10);
+        }
+
+        #endregion
+
+        #region Файл
 
         /// <summary>
         /// Обработка события нажатия Файл->Выход
@@ -231,13 +256,86 @@ namespace TestForm
             }
         }
 
+        #endregion
+
+        #region Правка
+
         /// <summary>
-        /// Обработка события отрисовки страницы для печати на принтере
+        /// Обработка события нажатия Правка->Отменить
         /// </summary>
-        private void PrintPage(object sender, PrintPageEventArgs e)
+        private void Undo(object sender, EventArgs e) => textBox.Undo();
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Вырезать
+        /// </summary>
+        private void Cut(object sender, EventArgs e)
         {
-            e.Graphics.DrawString(textBox.Text, textBox.Font, new SolidBrush(textBox.ForeColor), 10, 10);
+            if (textBox.SelectionLength > 0)
+            {
+                textBox.Cut();
+            }
         }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Копировать
+        /// </summary>
+        private void Copy(object sender, EventArgs e)
+        {
+            if (textBox.SelectionLength > 0)
+            {
+                textBox.Copy();
+            }
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Вставить
+        /// </summary>
+        private void Paste(object sender, EventArgs e)
+        {
+            if (textBox.SelectionLength > 0)
+            {
+                textBox.Paste();
+            }
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Вставить
+        /// </summary>
+        private void Delete(object sender, EventArgs e)
+        {
+            if (textBox.SelectionLength > 0)
+            {
+                textBox.Text = textBox.Text.Remove(textBox.SelectionStart,textBox.SelectionLength);
+            }
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Поиск в Интернете
+        /// </summary>
+        private void Search(object sender, EventArgs e)
+        {
+            if (textBox.SelectionLength > 0)
+            {
+                Process.Start($"https://www.google.com/search?q={textBox.SelectedText}");
+            }
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Выделить всё
+        /// </summary>
+        private void SelectAll(object sender, EventArgs e)
+        {
+            textBox.SelectAll();
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Дата и время
+        /// </summary>
+        private void PasteCurrentDateTime(object sender, EventArgs e)
+        {
+            textBox.Text += DateTime.Now.ToString("HH:mm dd.MM.yyyy");
+        }
+        #endregion
 
         /// <summary>
         /// Обрачотка события загрузки формы

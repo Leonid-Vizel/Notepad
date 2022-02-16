@@ -42,6 +42,25 @@ namespace TestForm
             this.fileItemSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.undoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.CutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.searchMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findBeforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.selectAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateTimeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formatMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.textBox = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
@@ -52,7 +71,10 @@ namespace TestForm
             this.menuStrip.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.formatMenuItem,
+            this.viewMenuItem,
+            this.infoMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(0);
@@ -144,9 +166,143 @@ namespace TestForm
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.undoMenuItem,
+            this.EditSeparator1,
+            this.CutMenuItem,
+            this.copyMenuItem,
+            this.pasteMenuItem,
+            this.deleteMenuItem,
+            this.EditSeparator2,
+            this.searchMenuItem,
+            this.findToolStripMenuItem,
+            this.findNextToolStripMenuItem,
+            this.findBeforeToolStripMenuItem,
+            this.replaceToolStripMenuItem,
+            this.getToToolStripMenuItem,
+            this.EditSeparator3,
+            this.selectAllMenuItem,
+            this.dateTimeMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.editToolStripMenuItem.Text = "Правка";
+            // 
+            // undoMenuItem
+            // 
+            this.undoMenuItem.Name = "undoMenuItem";
+            this.undoMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.undoMenuItem.Text = "Отменить";
+            this.undoMenuItem.Click += new System.EventHandler(this.Undo);
+            // 
+            // EditSeparator1
+            // 
+            this.EditSeparator1.Name = "EditSeparator1";
+            this.EditSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // CutMenuItem
+            // 
+            this.CutMenuItem.Name = "CutMenuItem";
+            this.CutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CutMenuItem.Text = "Вырезать";
+            this.CutMenuItem.Click += new System.EventHandler(this.Cut);
+            // 
+            // copyMenuItem
+            // 
+            this.copyMenuItem.Name = "copyMenuItem";
+            this.copyMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyMenuItem.Text = "Копировать";
+            this.copyMenuItem.Click += new System.EventHandler(this.Copy);
+            // 
+            // pasteMenuItem
+            // 
+            this.pasteMenuItem.Name = "pasteMenuItem";
+            this.pasteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteMenuItem.Text = "Вставить";
+            this.pasteMenuItem.Click += new System.EventHandler(this.Paste);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteMenuItem.Text = "Удалить";
+            this.deleteMenuItem.Click += new System.EventHandler(this.Delete);
+            // 
+            // EditSeparator2
+            // 
+            this.EditSeparator2.Name = "EditSeparator2";
+            this.EditSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // searchMenuItem
+            // 
+            this.searchMenuItem.Name = "searchMenuItem";
+            this.searchMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchMenuItem.Text = "Поиск в Интернете";
+            this.searchMenuItem.Click += new System.EventHandler(this.Search);
+            // 
+            // findToolStripMenuItem
+            // 
+            this.findToolStripMenuItem.Name = "findToolStripMenuItem";
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findToolStripMenuItem.Text = "Найти...";
+            // 
+            // findNextToolStripMenuItem
+            // 
+            this.findNextToolStripMenuItem.Name = "findNextToolStripMenuItem";
+            this.findNextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findNextToolStripMenuItem.Text = "Найти далее";
+            // 
+            // findBeforeToolStripMenuItem
+            // 
+            this.findBeforeToolStripMenuItem.Name = "findBeforeToolStripMenuItem";
+            this.findBeforeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findBeforeToolStripMenuItem.Text = "Найти ранее";
+            // 
+            // replaceToolStripMenuItem
+            // 
+            this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.replaceToolStripMenuItem.Text = "Заменить...";
+            // 
+            // getToToolStripMenuItem
+            // 
+            this.getToToolStripMenuItem.Name = "getToToolStripMenuItem";
+            this.getToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.getToToolStripMenuItem.Text = "Перейти...";
+            // 
+            // EditSeparator3
+            // 
+            this.EditSeparator3.Name = "EditSeparator3";
+            this.EditSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // selectAllMenuItem
+            // 
+            this.selectAllMenuItem.Name = "selectAllMenuItem";
+            this.selectAllMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.selectAllMenuItem.Text = "Выделить всё";
+            // 
+            // dateTimeMenuItem
+            // 
+            this.dateTimeMenuItem.Name = "dateTimeMenuItem";
+            this.dateTimeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dateTimeMenuItem.Text = "Дата и время";
+            // 
+            // formatMenuItem
+            // 
+            this.formatMenuItem.Name = "formatMenuItem";
+            this.formatMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.formatMenuItem.Text = "Формат";
+            // 
+            // viewMenuItem
+            // 
+            this.viewMenuItem.Name = "viewMenuItem";
+            this.viewMenuItem.Size = new System.Drawing.Size(39, 24);
+            this.viewMenuItem.Text = "Вид";
+            // 
+            // infoMenuItem
+            // 
+            this.infoMenuItem.Name = "infoMenuItem";
+            this.infoMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.infoMenuItem.Text = "Справка";
             // 
             // statusStrip
             // 
@@ -202,6 +358,25 @@ namespace TestForm
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.ToolStripMenuItem formatMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem infoMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem undoMenuItem;
+        private System.Windows.Forms.ToolStripSeparator EditSeparator1;
+        private System.Windows.Forms.ToolStripSeparator EditSeparator2;
+        private System.Windows.Forms.ToolStripSeparator EditSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem CutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findBeforeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectAllMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dateTimeMenuItem;
     }
 }
 
