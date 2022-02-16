@@ -337,8 +337,57 @@ namespace TestForm
         }
         #endregion
 
+        #region Формат
+
         /// <summary>
-        /// Обрачотка события загрузки формы
+        /// Обработка события нажатия Формат->Перенос по словам
+        /// </summary>
+        private void ChangeWordWrap(object sender, EventArgs e)
+        {
+            textBox.WordWrap = !textBox.WordWrap;
+            WordWrapMenuItem.Checked = !WordWrapMenuItem.Checked;
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Формат->Шрифт...
+        /// </summary>
+        private void ChangeFont(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+            fontDialog.Font = textBox.Font;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBox.Font = fontDialog.Font;
+            }
+        }
+
+        #endregion
+
+        #region Вид
+
+        private void SetStatuStripVisibility(object sender, EventArgs e)
+        {
+            statusStripMenuItem.Checked = !statusStripMenuItem.Checked;
+            statusStrip.Visible = !statusStrip.Visible;
+        }
+
+        #endregion
+
+        #region Справка
+
+        /// <summary>
+        /// Обработка события нажатия Справка->Репозиторий.
+        /// Открывает в браузере по-умполчанию ссылку на репозиторий с кодом этой программы
+        /// </summary>
+        private void ShowRepository(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/Leonid-Vizel/Notepad");
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Обработка события загрузки формы
         /// </summary>
         private void MainWindow_Load(object sender, EventArgs e)
         {
@@ -361,7 +410,7 @@ namespace TestForm
         /// <summary>
         /// Обработка события обновления текста в TextBox
         /// </summary>
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void OnTextChanged(object sender, EventArgs e)
         {
             if (!ignoreTextChanges)
             {
