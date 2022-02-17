@@ -125,8 +125,21 @@ namespace TestForm
         /// </summary>
         private string GetCurrentPosition()
         {
-            int row = 0;
-            int column = textBox.SelectionStart;
+            int row = 1;
+            int column = 1;
+            for (int i = 0; i < textBox.SelectionStart; i++)
+            {
+                if (textBox.Text[i].Equals('\n'))
+                {
+                    continue;
+                }
+                column++;
+                if (textBox.Text[i].Equals('\r') && textBox.Text[i+1].Equals('\n'))
+                {
+                    column = 1;
+                    row++;
+                }
+            }
             return $"Строка {row}, столбец {column}";
         }
 
@@ -443,7 +456,7 @@ namespace TestForm
                 }
                 status = false;
             }
-            toolStripStatusLabel1.Text = GetCurrentPosition();
+            rowColStatusLabel.Text = GetCurrentPosition();
         }
     }
 }

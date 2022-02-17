@@ -37,7 +37,6 @@ namespace TestForm
             this.saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileItemSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.pageParametersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileItemSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,8 +65,8 @@ namespace TestForm
             this.infoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.repositoryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.rowColStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBox = new System.Windows.Forms.TextBox();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -97,7 +96,6 @@ namespace TestForm
             this.saveMenuItem,
             this.saveAsMenuItem,
             this.fileItemSeparator1,
-            this.pageParametersMenuItem,
             this.printMenuItem,
             this.fileItemSeparator2,
             this.exitMenuItem});
@@ -108,65 +106,59 @@ namespace TestForm
             // createMenuItem
             // 
             this.createMenuItem.Name = "createMenuItem";
-            this.createMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.createMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createMenuItem.Text = "Создать";
             this.createMenuItem.Click += new System.EventHandler(this.Create);
             // 
             // newWindowMenuItem
             // 
             this.newWindowMenuItem.Name = "newWindowMenuItem";
-            this.newWindowMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.newWindowMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newWindowMenuItem.Text = "Новое окно";
             this.newWindowMenuItem.Click += new System.EventHandler(this.OpenAgain);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Открыть...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFile);
             // 
             // saveMenuItem
             // 
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMenuItem.Text = "Сохранить";
             this.saveMenuItem.Click += new System.EventHandler(this.SaveFile);
             // 
             // saveAsMenuItem
             // 
             this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.saveAsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsMenuItem.Text = "Сохранить как...";
             this.saveAsMenuItem.Click += new System.EventHandler(this.SaveFileAs);
             // 
             // fileItemSeparator1
             // 
             this.fileItemSeparator1.Name = "fileItemSeparator1";
-            this.fileItemSeparator1.Size = new System.Drawing.Size(201, 6);
-            // 
-            // pageParametersMenuItem
-            // 
-            this.pageParametersMenuItem.Name = "pageParametersMenuItem";
-            this.pageParametersMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.pageParametersMenuItem.Text = "Параметры страницы...";
+            this.fileItemSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // printMenuItem
             // 
             this.printMenuItem.Name = "printMenuItem";
-            this.printMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.printMenuItem.Size = new System.Drawing.Size(180, 22);
             this.printMenuItem.Text = "Печать...";
             this.printMenuItem.Click += new System.EventHandler(this.Print);
             // 
             // fileItemSeparator2
             // 
             this.fileItemSeparator2.Name = "fileItemSeparator2";
-            this.fileItemSeparator2.Size = new System.Drawing.Size(201, 6);
+            this.fileItemSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "Выход";
             this.exitMenuItem.Click += new System.EventHandler(this.ExitApplication);
             // 
@@ -283,14 +275,14 @@ namespace TestForm
             // selectAllMenuItem
             // 
             this.selectAllMenuItem.Name = "selectAllMenuItem";
-            this.selectAllMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.selectAllMenuItem.Size = new System.Drawing.Size(179, 22);
             this.selectAllMenuItem.Text = "Выделить всё";
             this.selectAllMenuItem.Click += new System.EventHandler(this.SelectAll);
             // 
             // dateTimeMenuItem
             // 
             this.dateTimeMenuItem.Name = "dateTimeMenuItem";
-            this.dateTimeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dateTimeMenuItem.Size = new System.Drawing.Size(179, 22);
             this.dateTimeMenuItem.Text = "Время и дата";
             this.dateTimeMenuItem.Click += new System.EventHandler(this.PasteCurrentDateTime);
             // 
@@ -332,7 +324,7 @@ namespace TestForm
             this.statusStripMenuItem.Checked = true;
             this.statusStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusStripMenuItem.Name = "statusStripMenuItem";
-            this.statusStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statusStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.statusStripMenuItem.Text = "Строка состояния";
             this.statusStripMenuItem.Click += new System.EventHandler(this.SetStatuStripVisibility);
             // 
@@ -354,12 +346,18 @@ namespace TestForm
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.rowColStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 22);
             this.statusStrip.TabIndex = 8;
             this.statusStrip.Text = "statusStrip";
+            // 
+            // rowColStatusLabel
+            // 
+            this.rowColStatusLabel.Name = "rowColStatusLabel";
+            this.rowColStatusLabel.Size = new System.Drawing.Size(115, 17);
+            this.rowColStatusLabel.Text = "Строка:1, столбец:1";
             // 
             // textBox
             // 
@@ -372,12 +370,6 @@ namespace TestForm
             this.textBox.Size = new System.Drawing.Size(800, 404);
             this.textBox.TabIndex = 9;
             this.textBox.TextChanged += new System.EventHandler(this.OnTextChanged);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(115, 17);
-            this.toolStripStatusLabel1.Text = "Строка:1, столбец:1";
             // 
             // MainWindow
             // 
@@ -411,7 +403,6 @@ namespace TestForm
         private System.Windows.Forms.ToolStripMenuItem saveAsMenuItem;
         private System.Windows.Forms.ToolStripSeparator fileItemSeparator1;
         private System.Windows.Forms.ToolStripSeparator fileItemSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem pageParametersMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
@@ -440,7 +431,7 @@ namespace TestForm
         private System.Windows.Forms.ToolStripMenuItem WordWrapMenuItem;
         private System.Windows.Forms.ToolStripMenuItem шрифтToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel rowColStatusLabel;
     }
 }
 
