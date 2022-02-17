@@ -458,5 +458,16 @@ namespace TestForm
             }
             rowColStatusLabel.Text = GetCurrentPosition();
         }
+
+        /// <summary>
+        /// Обработка события pакрытия окна формы
+        /// </summary>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!CheckSave())
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

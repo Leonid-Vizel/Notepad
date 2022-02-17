@@ -106,59 +106,59 @@ namespace TestForm
             // createMenuItem
             // 
             this.createMenuItem.Name = "createMenuItem";
-            this.createMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createMenuItem.Size = new System.Drawing.Size(163, 22);
             this.createMenuItem.Text = "Создать";
             this.createMenuItem.Click += new System.EventHandler(this.Create);
             // 
             // newWindowMenuItem
             // 
             this.newWindowMenuItem.Name = "newWindowMenuItem";
-            this.newWindowMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newWindowMenuItem.Size = new System.Drawing.Size(163, 22);
             this.newWindowMenuItem.Text = "Новое окно";
             this.newWindowMenuItem.Click += new System.EventHandler(this.OpenAgain);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.openToolStripMenuItem.Text = "Открыть...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFile);
             // 
             // saveMenuItem
             // 
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(163, 22);
             this.saveMenuItem.Text = "Сохранить";
             this.saveMenuItem.Click += new System.EventHandler(this.SaveFile);
             // 
             // saveAsMenuItem
             // 
             this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsMenuItem.Size = new System.Drawing.Size(163, 22);
             this.saveAsMenuItem.Text = "Сохранить как...";
             this.saveAsMenuItem.Click += new System.EventHandler(this.SaveFileAs);
             // 
             // fileItemSeparator1
             // 
             this.fileItemSeparator1.Name = "fileItemSeparator1";
-            this.fileItemSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.fileItemSeparator1.Size = new System.Drawing.Size(160, 6);
             // 
             // printMenuItem
             // 
             this.printMenuItem.Name = "printMenuItem";
-            this.printMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printMenuItem.Size = new System.Drawing.Size(163, 22);
             this.printMenuItem.Text = "Печать...";
             this.printMenuItem.Click += new System.EventHandler(this.Print);
             // 
             // fileItemSeparator2
             // 
             this.fileItemSeparator2.Name = "fileItemSeparator2";
-            this.fileItemSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.fileItemSeparator2.Size = new System.Drawing.Size(160, 6);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(163, 22);
             this.exitMenuItem.Text = "Выход";
             this.exitMenuItem.Click += new System.EventHandler(this.ExitApplication);
             // 
@@ -383,6 +383,7 @@ namespace TestForm
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Блокнот";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
