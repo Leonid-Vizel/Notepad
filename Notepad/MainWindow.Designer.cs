@@ -370,6 +370,8 @@ namespace TestForm
             this.textBox.Size = new System.Drawing.Size(800, 404);
             this.textBox.TabIndex = 9;
             this.textBox.TextChanged += new System.EventHandler(this.OnTextChanged);
+            this.textBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            this.textBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // MainWindow
             // 
