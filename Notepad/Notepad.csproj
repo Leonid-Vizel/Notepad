@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algs.cs" />
     <Compile Include="FindForm.cs">
       <SubType>Form</SubType>
     </Compile>

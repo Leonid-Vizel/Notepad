@@ -58,12 +58,20 @@ namespace TestForm
             this.formatMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WordWrapMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ASCIIEncodingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UTF7EncodingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UTF8EncodingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UTF32EncodingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UnicodeEncodingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BigUnicodeEncodingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.repositoryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.rowColStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.encodingStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBox = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -104,35 +112,42 @@ namespace TestForm
             // createMenuItem
             // 
             this.createMenuItem.Name = "createMenuItem";
-            this.createMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.createMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.createMenuItem.Size = new System.Drawing.Size(235, 22);
             this.createMenuItem.Text = "Создать";
             this.createMenuItem.Click += new System.EventHandler(this.Create);
             // 
             // newWindowMenuItem
             // 
             this.newWindowMenuItem.Name = "newWindowMenuItem";
-            this.newWindowMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.newWindowMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.N)));
+            this.newWindowMenuItem.Size = new System.Drawing.Size(235, 22);
             this.newWindowMenuItem.Text = "Новое окно";
             this.newWindowMenuItem.Click += new System.EventHandler(this.OpenAgain);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.openToolStripMenuItem.Text = "Открыть...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFile);
             // 
             // saveMenuItem
             // 
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveMenuItem.Size = new System.Drawing.Size(235, 22);
             this.saveMenuItem.Text = "Сохранить";
             this.saveMenuItem.Click += new System.EventHandler(this.SaveFile);
             // 
             // saveAsMenuItem
             // 
             this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.saveAsMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveAsMenuItem.Size = new System.Drawing.Size(235, 22);
             this.saveAsMenuItem.Text = "Сохранить как...";
             this.saveAsMenuItem.Click += new System.EventHandler(this.SaveFileAs);
             // 
@@ -144,7 +159,8 @@ namespace TestForm
             // printMenuItem
             // 
             this.printMenuItem.Name = "printMenuItem";
-            this.printMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.printMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.printMenuItem.Size = new System.Drawing.Size(235, 22);
             this.printMenuItem.Text = "Печать...";
             this.printMenuItem.Click += new System.EventHandler(this.Print);
             // 
@@ -156,7 +172,8 @@ namespace TestForm
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.exitMenuItem.ShortcutKeyDisplayString = "ALT+F4";
+            this.exitMenuItem.Size = new System.Drawing.Size(235, 22);
             this.exitMenuItem.Text = "Выход";
             this.exitMenuItem.Click += new System.EventHandler(this.ExitApplication);
             // 
@@ -184,92 +201,103 @@ namespace TestForm
             // undoMenuItem
             // 
             this.undoMenuItem.Name = "undoMenuItem";
-            this.undoMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.undoMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.undoMenuItem.Size = new System.Drawing.Size(181, 22);
             this.undoMenuItem.Text = "Отменить";
             this.undoMenuItem.Click += new System.EventHandler(this.Undo);
             // 
             // EditSeparator1
             // 
             this.EditSeparator1.Name = "EditSeparator1";
-            this.EditSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.EditSeparator1.Size = new System.Drawing.Size(176, 6);
             // 
             // CutMenuItem
             // 
             this.CutMenuItem.Name = "CutMenuItem";
-            this.CutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.CutMenuItem.Size = new System.Drawing.Size(219, 22);
             this.CutMenuItem.Text = "Вырезать";
             this.CutMenuItem.Click += new System.EventHandler(this.Cut);
             // 
             // copyMenuItem
             // 
             this.copyMenuItem.Name = "copyMenuItem";
-            this.copyMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyMenuItem.Size = new System.Drawing.Size(181, 22);
             this.copyMenuItem.Text = "Копировать";
             this.copyMenuItem.Click += new System.EventHandler(this.Copy);
             // 
             // pasteMenuItem
             // 
             this.pasteMenuItem.Name = "pasteMenuItem";
-            this.pasteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteMenuItem.Size = new System.Drawing.Size(181, 22);
             this.pasteMenuItem.Text = "Вставить";
             this.pasteMenuItem.Click += new System.EventHandler(this.Paste);
             // 
             // deleteMenuItem
             // 
             this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteMenuItem.Size = new System.Drawing.Size(181, 22);
             this.deleteMenuItem.Text = "Удалить";
             this.deleteMenuItem.Click += new System.EventHandler(this.Delete);
             // 
             // EditSeparator2
             // 
             this.EditSeparator2.Name = "EditSeparator2";
-            this.EditSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.EditSeparator2.Size = new System.Drawing.Size(176, 6);
             // 
             // searchMenuItem
             // 
             this.searchMenuItem.Name = "searchMenuItem";
-            this.searchMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.searchMenuItem.Size = new System.Drawing.Size(219, 22);
             this.searchMenuItem.Text = "Поиск в Интернете";
             this.searchMenuItem.Click += new System.EventHandler(this.Search);
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.findToolStripMenuItem.Text = "Найти...";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.OpenFinder);
             // 
             // replaceToolStripMenuItem
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.replaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.replaceToolStripMenuItem.Text = "Заменить...";
             this.replaceToolStripMenuItem.Click += new System.EventHandler(this.OpenReplacer);
             // 
             // getToToolStripMenuItem
             // 
             this.getToToolStripMenuItem.Name = "getToToolStripMenuItem";
-            this.getToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.getToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.getToToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.getToToolStripMenuItem.Text = "Перейти...";
             this.getToToolStripMenuItem.Click += new System.EventHandler(this.OpenShifter);
             // 
             // EditSeparator3
             // 
             this.EditSeparator3.Name = "EditSeparator3";
-            this.EditSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.EditSeparator3.Size = new System.Drawing.Size(176, 6);
             // 
             // selectAllMenuItem
             // 
             this.selectAllMenuItem.Name = "selectAllMenuItem";
-            this.selectAllMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.selectAllMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.selectAllMenuItem.Size = new System.Drawing.Size(219, 22);
             this.selectAllMenuItem.Text = "Выделить всё";
             this.selectAllMenuItem.Click += new System.EventHandler(this.SelectAll);
             // 
             // dateTimeMenuItem
             // 
             this.dateTimeMenuItem.Name = "dateTimeMenuItem";
-            this.dateTimeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dateTimeMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.dateTimeMenuItem.Size = new System.Drawing.Size(219, 22);
             this.dateTimeMenuItem.Text = "Время и дата";
             this.dateTimeMenuItem.Click += new System.EventHandler(this.PasteCurrentDateTime);
             // 
@@ -277,7 +305,8 @@ namespace TestForm
             // 
             this.formatMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.WordWrapMenuItem,
-            this.шрифтToolStripMenuItem});
+            this.шрифтToolStripMenuItem,
+            this.encodingToolStripMenuItem});
             this.formatMenuItem.Name = "formatMenuItem";
             this.formatMenuItem.Size = new System.Drawing.Size(62, 24);
             this.formatMenuItem.Text = "Формат";
@@ -297,6 +326,63 @@ namespace TestForm
             this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.шрифтToolStripMenuItem.Text = "Шрифт...";
             this.шрифтToolStripMenuItem.Click += new System.EventHandler(this.ChangeFont);
+            // 
+            // encodingToolStripMenuItem
+            // 
+            this.encodingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ASCIIEncodingMenuItem,
+            this.UTF7EncodingMenuItem,
+            this.UTF8EncodingMenuItem,
+            this.UTF32EncodingMenuItem,
+            this.UnicodeEncodingMenuItem,
+            this.BigUnicodeEncodingMenuItem});
+            this.encodingToolStripMenuItem.Name = "encodingToolStripMenuItem";
+            this.encodingToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.encodingToolStripMenuItem.Text = "Кодировка";
+            // 
+            // ASCIIEncodingMenuItem
+            // 
+            this.ASCIIEncodingMenuItem.Name = "ASCIIEncodingMenuItem";
+            this.ASCIIEncodingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ASCIIEncodingMenuItem.Text = "ASCII";
+            this.ASCIIEncodingMenuItem.Click += new System.EventHandler(this.UpdateEncoding);
+            // 
+            // UTF7EncodingMenuItem
+            // 
+            this.UTF7EncodingMenuItem.Name = "UTF7EncodingMenuItem";
+            this.UTF7EncodingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UTF7EncodingMenuItem.Text = "UTF-7";
+            this.UTF7EncodingMenuItem.Click += new System.EventHandler(this.UpdateEncoding);
+            // 
+            // UTF8EncodingMenuItem
+            // 
+            this.UTF8EncodingMenuItem.Checked = true;
+            this.UTF8EncodingMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UTF8EncodingMenuItem.Name = "UTF8EncodingMenuItem";
+            this.UTF8EncodingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UTF8EncodingMenuItem.Text = "UTF-8";
+            this.UTF8EncodingMenuItem.Click += new System.EventHandler(this.UpdateEncoding);
+            // 
+            // UTF32EncodingMenuItem
+            // 
+            this.UTF32EncodingMenuItem.Name = "UTF32EncodingMenuItem";
+            this.UTF32EncodingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UTF32EncodingMenuItem.Text = "UTF-32";
+            this.UTF32EncodingMenuItem.Click += new System.EventHandler(this.UpdateEncoding);
+            // 
+            // UnicodeEncodingMenuItem
+            // 
+            this.UnicodeEncodingMenuItem.Name = "UnicodeEncodingMenuItem";
+            this.UnicodeEncodingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UnicodeEncodingMenuItem.Text = "Unicode";
+            this.UnicodeEncodingMenuItem.Click += new System.EventHandler(this.UpdateEncoding);
+            // 
+            // BigUnicodeEncodingMenuItem
+            // 
+            this.BigUnicodeEncodingMenuItem.Name = "BigUnicodeEncodingMenuItem";
+            this.BigUnicodeEncodingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.BigUnicodeEncodingMenuItem.Text = "Big Endian Unicode";
+            this.BigUnicodeEncodingMenuItem.Click += new System.EventHandler(this.UpdateEncoding);
             // 
             // viewMenuItem
             // 
@@ -333,7 +419,8 @@ namespace TestForm
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rowColStatusLabel});
+            this.rowColStatusLabel,
+            this.encodingStatus});
             this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 22);
@@ -345,6 +432,12 @@ namespace TestForm
             this.rowColStatusLabel.Name = "rowColStatusLabel";
             this.rowColStatusLabel.Size = new System.Drawing.Size(115, 17);
             this.rowColStatusLabel.Text = "Строка:1, столбец:1";
+            // 
+            // encodingStatus
+            // 
+            this.encodingStatus.Name = "encodingStatus";
+            this.encodingStatus.Size = new System.Drawing.Size(103, 17);
+            this.encodingStatus.Text = "Кодировка: UTF-8";
             // 
             // textBox
             // 
@@ -420,6 +513,15 @@ namespace TestForm
         private System.Windows.Forms.ToolStripMenuItem шрифтToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel rowColStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel encodingStatus;
+        private System.Windows.Forms.ToolStripMenuItem encodingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ASCIIEncodingMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UTF7EncodingMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UTF8EncodingMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UTF32EncodingMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UnicodeEncodingMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BigUnicodeEncodingMenuItem;
     }
 }
 

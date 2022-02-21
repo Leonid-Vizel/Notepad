@@ -5,11 +5,82 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using Notepad;
+using System.Text;
 
 namespace TestForm
 {
     public partial class MainWindow : Form
     {
+        /// <summary>
+        /// Поле для свойства. НЕ ТРОГАТЬ!
+        /// </summary>
+        private Encoding _encoding;
+        /// <summary>
+        /// Текущий тип кодирования
+        /// </summary>
+        private Encoding currentEncoding
+        {
+            set
+            {
+                _encoding = value;
+                if (value == Encoding.ASCII)
+                {
+                    encodingStatus.Text = "Кодировка: ASCII";
+                }
+                else if (value == Encoding.UTF7)
+                {
+                    encodingStatus.Text = "Кодировка: UTF-7";
+                }
+                else if (value == Encoding.UTF8)
+                {
+                    encodingStatus.Text = "Кодировка: UTF-8";
+                }
+                else if (value == Encoding.UTF32)
+                {
+                    encodingStatus.Text = "Кодировка: UTF-32";
+                }
+                else if (value == Encoding.Unicode)
+                {
+                    encodingStatus.Text = "Кодировка: Unicode";
+                }
+                else if (value == Encoding.BigEndianUnicode)
+                {
+                    encodingStatus.Text = "Кодировка: Big Endian Unicode";
+                }
+                else
+                {
+                    encodingStatus.Text = "Кодировка: А как какать?";
+                }
+
+                // Switch не работает, так как это непостоянные параметры
+                //switch (_encoding)
+                //{
+                //    case Encoding.ASCII:
+                //        encodingStatus.Text = "Кодировка: ASCII";
+                //        break;
+                //    case Encoding.UTF7:
+                //        encodingStatus.Text = "Кодировка: UTF-7";
+                //        break;
+                //    case Encoding.UTF8:
+                //        encodingStatus.Text = "Кодировка: UTF-8";
+                //        break;
+                //    case Encoding.UTF32:
+                //        encodingStatus.Text = "Кодировка: UTF-32";
+                //        break;
+                //    case Encoding.Unicode:
+                //        encodingStatus.Text = "Кодировка: Unicode";
+                //        break;
+                //    case Encoding.BigEndianUnicode:
+                //        encodingStatus.Text = "Кодировка: Big Endian Unicode";
+                //        break;
+                //}
+            }
+            get
+            {
+                return _encoding;
+            }
+        }
+
         /// <summary>
         ///  Объект формы замены. Только одна такая может быть запущена в одно время.
         /// </summary>
@@ -68,6 +139,7 @@ namespace TestForm
             fileName = "Безымянный.txt";
             InitializeComponent();
             Text = $"Блокнот - {fileName}";
+            currentEncoding = Encoding.UTF8;
         }
 
         /// <summary>
@@ -170,7 +242,7 @@ namespace TestForm
             {
                 try
                 {
-                    File.WriteAllText(path, textBox.Text);
+                    File.WriteAllText(path, textBox.Text,currentEncoding);
                     status = true;
                 }
                 catch (Exception exception)
@@ -178,7 +250,7 @@ namespace TestForm
                     DialogResult result = MessageBox.Show(this,"Ошибка сохранения", $"{exception.Message}]\nХотите сохранить файл '{fileName}' в папке 'Документы'?", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/{fileName}", textBox.Text);
+                        File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/{fileName}", textBox.Text, currentEncoding);
                     }
                 }
             }
@@ -201,7 +273,7 @@ namespace TestForm
             {
                 try
                 {
-                    File.WriteAllText(saveDialog.FileName, textBox.Text);
+                    File.WriteAllText(saveDialog.FileName, textBox.Text, currentEncoding);
                     path = saveDialog.FileName;
                     status = true;
                 }
@@ -211,7 +283,7 @@ namespace TestForm
                     if (result == DialogResult.Yes)
                     {
                         path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/{fileName}";
-                        File.WriteAllText(path, textBox.Text);
+                        File.WriteAllText(path, textBox.Text, currentEncoding);
                         status = true;
                     }
                 }
@@ -239,7 +311,8 @@ namespace TestForm
                     try
                     {
                         ignoreTextChanges = true;
-                        string readString = File.ReadAllText(openDialog.FileName);
+                        currentEncoding = Algs.GetEncoding(openDialog.FileName);
+                        string readString = File.ReadAllText(openDialog.FileName, currentEncoding);
                         if (textBox.MaxLength > readString.Length)
                         {
                             textBox.MaxLength = readString.Length;
@@ -252,6 +325,7 @@ namespace TestForm
                     catch (Exception exception)
                     {
                         MessageBox.Show(this, exception.Message, "Ошибка чтения");
+                        currentEncoding = Encoding.UTF8;
                     }
                 }
             }
@@ -267,7 +341,9 @@ namespace TestForm
                 _path = ""; //Задаю вручную, чтобы не затрагивать fileName
                 fileName = "Безымянный.txt";
                 Text = $"Блокнот - {fileName}";
+                ignoreTextChanges = true;
                 textBox.Text = "";
+                ignoreTextChanges = false;
             }
         }
 
@@ -501,11 +577,13 @@ namespace TestForm
                 try
                 {
                     ignoreTextChanges = true;
-                    string readString = File.ReadAllText(path);
+                    currentEncoding = Algs.GetEncoding(path);
+                    string readString = File.ReadAllText(path, currentEncoding);
                     if (textBox.MaxLength > readString.Length)
                     {
                         textBox.MaxLength = readString.Length;
                     }
+                    textBox.Text = readString;
                     ignoreTextChanges = false;
                 }
                 catch (Exception exception)
@@ -559,6 +637,92 @@ namespace TestForm
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
             rowColStatusLabel.Text = GetCurrentPosition();
+        }
+
+        /// <summary>
+        /// Обработка события замены кодировки на другую
+        /// </summary>
+        private void UpdateEncoding(object sender, EventArgs e)
+        {
+            ToolStripMenuItem encodingItem = sender as ToolStripMenuItem;
+            if (encodingItem != null)
+            {
+                switch (encodingItem.Name)
+                {
+                    case "ASCIIEncodingMenuItem":
+                        if (currentEncoding != Encoding.ASCII)
+                        {
+                            currentEncoding = Encoding.ASCII;
+                            ASCIIEncodingMenuItem.Checked = true;
+                            UTF7EncodingMenuItem.Checked = false;
+                            UTF8EncodingMenuItem.Checked = false;
+                            UTF32EncodingMenuItem.Checked = false;
+                            UnicodeEncodingMenuItem.Checked = false;
+                            BigUnicodeEncodingMenuItem.Checked = false;
+                        }
+                        break;
+                    case "UTF7EncodingMenuItem":
+                        if (currentEncoding != Encoding.UTF7)
+                        {
+                            currentEncoding = Encoding.UTF7;
+                            ASCIIEncodingMenuItem.Checked = false;
+                            UTF7EncodingMenuItem.Checked = true;
+                            UTF8EncodingMenuItem.Checked = false;
+                            UTF32EncodingMenuItem.Checked = false;
+                            UnicodeEncodingMenuItem.Checked = false;
+                            BigUnicodeEncodingMenuItem.Checked = false;
+                        }
+                        break;
+                    case "UTF8EncodingMenuItem":
+                        if (currentEncoding != Encoding.UTF8)
+                        {
+                            currentEncoding = Encoding.UTF8;
+                            ASCIIEncodingMenuItem.Checked = false;
+                            UTF7EncodingMenuItem.Checked = false;
+                            UTF8EncodingMenuItem.Checked = true;
+                            UTF32EncodingMenuItem.Checked = false;
+                            UnicodeEncodingMenuItem.Checked = false;
+                            BigUnicodeEncodingMenuItem.Checked = false;
+                        }
+                        break;
+                    case "UTF32EncodingMenuItem":
+                        if (currentEncoding != Encoding.UTF32)
+                        {
+                            currentEncoding = Encoding.UTF32;
+                            ASCIIEncodingMenuItem.Checked = false;
+                            UTF7EncodingMenuItem.Checked = false;
+                            UTF8EncodingMenuItem.Checked = false;
+                            UTF32EncodingMenuItem.Checked = true;
+                            UnicodeEncodingMenuItem.Checked = false;
+                            BigUnicodeEncodingMenuItem.Checked = false;
+                        }
+                        break;
+                    case "UnicodeEncodingMenuItem":
+                        if (currentEncoding != Encoding.Unicode)
+                        {
+                            currentEncoding = Encoding.Unicode;
+                            ASCIIEncodingMenuItem.Checked = false;
+                            UTF7EncodingMenuItem.Checked = false;
+                            UTF8EncodingMenuItem.Checked = false;
+                            UTF32EncodingMenuItem.Checked = false;
+                            UnicodeEncodingMenuItem.Checked = true;
+                            BigUnicodeEncodingMenuItem.Checked = false;
+                        }
+                        break;
+                    case "BigUnicodeEncodingMenuItem":
+                        if (currentEncoding != Encoding.BigEndianUnicode)
+                        {
+                            currentEncoding = Encoding.BigEndianUnicode;
+                            ASCIIEncodingMenuItem.Checked = false;
+                            UTF7EncodingMenuItem.Checked = false;
+                            UTF8EncodingMenuItem.Checked = false;
+                            UTF32EncodingMenuItem.Checked = false;
+                            UnicodeEncodingMenuItem.Checked = false;
+                            BigUnicodeEncodingMenuItem.Checked = true;
+                        }
+                        break;
+                }
+            }
         }
     }
 }
