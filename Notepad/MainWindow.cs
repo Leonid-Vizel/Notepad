@@ -1,24 +1,34 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing.Printing;
+using Notepad;
 
 namespace TestForm
 {
     public partial class MainWindow : Form
     {
         /// <summary>
+        ///  Объект формы замены. Только одна такая может быть запущена в одно время.
+        /// </summary>
+        private ReplaceForm replacer;
+
+        /// <summary>
+        ///  Объект формы поиска. Только одна такая может быть запущена в одно время.
+        /// </summary>
+        private FindForm finder;
+
+        /// <summary>
+        ///  Объект формы перехода. Только одна такая может быть запущена в одно время.
+        /// </summary>
+        private ShiftForm shifter;
+
+        /// <summary>
         /// Игнорировать изменения в текстовом поле
         /// </summary>
-        bool ignoreTextChanges;
+        private bool ignoreTextChanges;
 
         /// <summary>
         /// Поле для свойства 'path' (Не использовать)
@@ -320,10 +330,7 @@ namespace TestForm
         /// </summary>
         private void Paste(object sender, EventArgs e)
         {
-            if (textBox.SelectionLength > 0)
-            {
-                textBox.Paste();
-            }
+            textBox.Paste(Clipboard.GetText());
         }
 
         /// <summary>
@@ -468,6 +475,63 @@ namespace TestForm
             {
                 e.Cancel = true;
             }
+        }
+
+        private void OpenReplacer(object sender, EventArgs e)
+        {
+            if (replacer == null)
+            {
+                replacer = new ReplaceForm(textBox);
+                replacer.FormClosed += OnReplacerClosed;
+                replacer.Show();
+            }
+            else
+            {
+                replacer.Focus();
+            }
+        }
+
+        private void OnReplacerClosed(object sender, EventArgs e)
+        {
+            replacer = null;
+        }
+
+        private void OpenFinder(object sender, EventArgs e)
+        {
+            if (replacer == null)
+            {
+                finder = new FindForm(textBox);
+                finder.FormClosed += OnFinderClosed;
+                finder.Show();
+            }
+            else
+            {
+                finder.Focus();
+            }
+        }
+
+        private void OnFinderClosed(object sender, EventArgs e)
+        {
+            finder = null;
+        }
+
+        private void OpenShifter(object sender, EventArgs e)
+        {
+            if (shifter == null)
+            {
+                shifter = new ShiftForm(textBox);
+                shifter.FormClosed += OnShifterClosed;
+                shifter.Show();
+            }
+            else
+            {
+                shifter.Focus();
+            }
+        }
+
+        private void OnShifterClosed(object sender, EventArgs e)
+        {
+            shifter = null;
         }
     }
 }
