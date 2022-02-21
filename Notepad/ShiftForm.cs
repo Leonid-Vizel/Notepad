@@ -12,6 +12,9 @@ namespace Notepad
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработка события нажатия на кнопку "Перейти"
+        /// </summary>
         private void Shift(object sender, EventArgs e)
         {
             int lineIndex = (int)lineNumber.Value - 1;

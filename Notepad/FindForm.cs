@@ -12,8 +12,14 @@ namespace Notepad
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработка события нажатия на кнопку "Отмена"
+        /// </summary>
         private void cancelBtn_Click(object sender, EventArgs e) => Close();
 
+        /// <summary>
+        /// Обработка события нажатия на кнопку "Найти"
+        /// </summary>
         private void Find(object sender, EventArgs e)
         {
             string analyzeText = parentTextBox.Text;

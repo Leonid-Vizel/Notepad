@@ -362,6 +362,81 @@ namespace TestForm
         {
             textBox.Text += DateTime.Now.ToString("HH:mm dd.MM.yyyy");
         }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Заменить
+        /// </summary>
+        private void OpenReplacer(object sender, EventArgs e)
+        {
+            if (replacer == null)
+            {
+                replacer = new ReplaceForm(textBox);
+                replacer.FormClosed += OnReplacerClosed;
+                replacer.Show();
+            }
+            else
+            {
+                replacer.Focus();
+            }
+        }
+
+        /// <summary>
+        /// Обработка события закрытия формы 'Заменить'
+        /// </summary>
+        private void OnReplacerClosed(object sender, EventArgs e)
+        {
+            replacer = null;
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Найти
+        /// </summary>
+        private void OpenFinder(object sender, EventArgs e)
+        {
+            if (replacer == null)
+            {
+                finder = new FindForm(textBox);
+                finder.FormClosed += OnFinderClosed;
+                finder.Show();
+            }
+            else
+            {
+                finder.Focus();
+            }
+        }
+
+        /// <summary>
+        /// Обработка события закрытия формы 'Найти'
+        /// </summary>
+        private void OnFinderClosed(object sender, EventArgs e)
+        {
+            finder = null;
+        }
+
+        /// <summary>
+        /// Обработка события нажатия Правка->Перейти
+        /// </summary>
+        private void OpenShifter(object sender, EventArgs e)
+        {
+            if (shifter == null)
+            {
+                shifter = new ShiftForm(textBox);
+                shifter.FormClosed += OnShifterClosed;
+                shifter.Show();
+            }
+            else
+            {
+                shifter.Focus();
+            }
+        }
+
+        /// <summary>
+        /// Обработка события закрытия формы 'Переход'
+        /// </summary>
+        private void OnShifterClosed(object sender, EventArgs e)
+        {
+            shifter = null;
+        }
         #endregion
 
         #region Формат
@@ -466,63 +541,6 @@ namespace TestForm
             {
                 e.Cancel = true;
             }
-        }
-
-        private void OpenReplacer(object sender, EventArgs e)
-        {
-            if (replacer == null)
-            {
-                replacer = new ReplaceForm(textBox);
-                replacer.FormClosed += OnReplacerClosed;
-                replacer.Show();
-            }
-            else
-            {
-                replacer.Focus();
-            }
-        }
-
-        private void OnReplacerClosed(object sender, EventArgs e)
-        {
-            replacer = null;
-        }
-
-        private void OpenFinder(object sender, EventArgs e)
-        {
-            if (replacer == null)
-            {
-                finder = new FindForm(textBox);
-                finder.FormClosed += OnFinderClosed;
-                finder.Show();
-            }
-            else
-            {
-                finder.Focus();
-            }
-        }
-
-        private void OnFinderClosed(object sender, EventArgs e)
-        {
-            finder = null;
-        }
-
-        private void OpenShifter(object sender, EventArgs e)
-        {
-            if (shifter == null)
-            {
-                shifter = new ShiftForm(textBox);
-                shifter.FormClosed += OnShifterClosed;
-                shifter.Show();
-            }
-            else
-            {
-                shifter.Focus();
-            }
-        }
-
-        private void OnShifterClosed(object sender, EventArgs e)
-        {
-            shifter = null;
         }
 
         /// <summary>

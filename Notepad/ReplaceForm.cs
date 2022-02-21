@@ -12,13 +12,22 @@ namespace Notepad
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработка события нажатия на кнопку "Отмена"
+        /// </summary>
         private void CloseForm(object sender, EventArgs e) => Close();
 
+        /// <summary>
+        /// Обработка события загрузк формы
+        /// </summary>
         private void OnLoad(object sender, EventArgs e)
         {
             oldTextBox.Text = Clipboard.GetText();
         }
 
+        /// <summary>
+        /// Обработка события нажатия на кнопку "Заменить все"
+        /// </summary>
         private void replaceAll(object sender, EventArgs e)
         {
             if (oldTextBox.Text.Length > 0)
@@ -28,6 +37,9 @@ namespace Notepad
             }
         }
 
+        /// <summary>
+        /// Обработка события нажатия на кнопку "Заменить"
+        /// </summary>
         private void replaceOnce(object sender, EventArgs e)
         {
             string analysingText = parentTextBox.Text.Substring(parentTextBox.SelectionStart);
@@ -46,6 +58,9 @@ namespace Notepad
             }
         }
 
+        /// <summary>
+        /// Обработка события нажатия на кнопку "Найти далее"
+        /// </summary>
         private void findNextBtn_Click(object sender, EventArgs e)
         {
             string analysingText = parentTextBox.Text.Substring(parentTextBox.SelectionStart);
