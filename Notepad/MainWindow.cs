@@ -135,22 +135,14 @@ namespace TestForm
         /// </summary>
         private string GetCurrentPosition()
         {
-            int row = 1;
-            int column = 1;
-            for (int i = 0; i < textBox.SelectionStart; i++)
-            {
-                if (textBox.Text[i].Equals('\n'))
-                {
-                    continue;
-                }
-                column++;
-                if (textBox.Text[i].Equals('\r') && textBox.Text[i+1].Equals('\n'))
-                {
-                    column = 1;
-                    row++;
-                }
-            }
-            return $"Строка {row}, столбец {column}";
+            Point pt;
+            int line, col, index;
+            index = textBox.SelectionStart;
+            line = textBox.GetLineFromCharIndex(index);
+            pt = textBox.GetPositionFromCharIndex(index);
+            pt.X = 0;
+            col = index - textBox.GetCharIndexFromPosition(pt);
+            return $"Строка {++line}, столбец {++col}";
         }
 
         #endregion
@@ -463,7 +455,6 @@ namespace TestForm
                 }
                 status = false;
             }
-            rowColStatusLabel.Text = GetCurrentPosition();
         }
 
         /// <summary>
@@ -532,6 +523,24 @@ namespace TestForm
         private void OnShifterClosed(object sender, EventArgs e)
         {
             shifter = null;
+        }
+
+        /// <summary>
+        /// Обработка события отпуская кнопки мыши
+        /// Для обновления статуса
+        /// </summary>
+        private void OnMouseUp(object sender, MouseEventArgs e)
+        {
+            rowColStatusLabel.Text = GetCurrentPosition();
+        }
+
+        /// <summary>
+        /// Обработка события отпуская кнопки клавиатуры
+        /// Для обновления статуса
+        /// </summary>
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            rowColStatusLabel.Text = GetCurrentPosition();
         }
     }
 }
