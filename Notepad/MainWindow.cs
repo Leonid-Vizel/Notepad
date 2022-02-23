@@ -539,6 +539,19 @@ namespace TestForm
             }
         }
 
+        /// <summary>
+        /// Обработка события нажатия Формат->Цвет...
+        /// </summary>
+        private void ChangeColor(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            colorDialog.Color = textBox.ForeColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBox.ForeColor = colorDialog.Color;
+            }
+        }
+
         #endregion
 
         #region Вид
