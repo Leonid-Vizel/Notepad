@@ -460,7 +460,7 @@ namespace TestForm
             this.colorMenuItem.Name = "colorMenuItem";
             this.colorMenuItem.Size = new System.Drawing.Size(183, 22);
             this.colorMenuItem.Text = "Цвет...";
-            this.colorMenuItem.Click += new System.EventHandler(this.colorMenuItem_Click);
+            this.colorMenuItem.Click += new System.EventHandler(this.ChangeColor);
             // 
             // MainWindow
             // 
