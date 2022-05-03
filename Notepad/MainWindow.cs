@@ -195,6 +195,7 @@ namespace TestForm
         }
 
         /// <summary>
+        /// TEST
         /// Обработка события отрисовки страницы для печати на принтере
         /// </summary>
         private void PrintPage(object sender, PrintPageEventArgs e)
